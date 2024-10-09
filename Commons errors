@@ -1,1 +1,31 @@
 
+
+### Erreurs courantes de Kubernetes    
+
+## 1. ImageBackPullOff :  => l’image n’est pas présente dans le registre / la balise d’image donnée est incorrecte.
+Résolution: Vérifier que l’URL de registre, le nom de l’image et la balise d’image  sont corrects.    
+
+Nous pouvons rencontrer des échecs d’authentification, lorsque l’image est stockée dans un registre privé, assurez-vous de créer un secret avec les informations d’identification du registre privé et ajoutez le secret créé dans le fichier de déploiement Kubernetes pour extraire l’image docker.
+
+2. CrashLoopBackOff :-
+Nous rencontrons ce problème lorsque le processus déployé à l’intérieur du conteneur ne s’exécute pas, le POD est déplacé vers CrashLoopBackOff.
+
+Il se peut que le POD soit à court de processeur ou de mémoire, qu’il obtienne suffisamment de ressources allouées, c’est-à-dire le processeur et la mémoire pour qu’une application soit opérationnelle, pour résoudre ce problème dans les demandes de ressources et les limites de ressources.
+
+3.OOM Killed - Mémoire perdue :-
+Nous sommes confrontés à ce problème lorsque les POD essaient d’utiliser plus de mémoire que les limites que nous avons définies.
+Nous pouvons le résoudre en définissant une demande de ressource et une limite de ressources appropriées.
+
+4. Statut du POD - En attente :-
+Lorsque les nœuds ne sont peut-être pas prêts et que les ressources requises telles que le processeur et la mémoire ne sont peut-être pas disponibles dans les nœuds pour que les POD soient opérationnels.
+
+5. Statut du POD - En attente :-
+Le POD sera planifié sur un nœud, mais il ne s’exécutera pas sur un nœud planifié.
+Nous pouvons résoudre ce problème en fournissant le nom de l’image, la balise d’image et l’authentification corrects au registre.
+
+6.POD sera opérationnel et l’application n’est pas accessible.
+Nous pouvons résoudre ce problème en créant un service approprié.
+Si le service est déjà créé et que l’application n’est toujours pas accessible, assurez-vous que l’application et le service sont déployés dans le même espace de noms.
+
+7. Statut POD - Expulsé :-
+Nous pouvons résoudre ce problème en définissant des demandes de ressources et des limites de ressources appropriées pour les POD et en disposant de suffisamment de ressources dans les nœuds de travail.
